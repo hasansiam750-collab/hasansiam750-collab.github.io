@@ -6,7 +6,7 @@
 <title>Md Siam Hasan // Profile</title>
 <meta name="description" content="Md Siam Hasan — SSC 2026 candidate, Mouchak Scout School and College. Sylhet-bound.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   :root{
@@ -31,15 +31,71 @@
 
   header{
     position:fixed; top:0; left:0; right:0; z-index:50;
-    background:rgba(5,8,5,0.88); border-bottom:1px solid var(--line);
+    background:rgba(5,8,5,0.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
   }
-  .nav{ display:flex; justify-content:space-between; align-items:center; padding:16px 24px; max-width:880px; margin:0 auto; font-size:0.82rem; }
-  .brand{ color:var(--green); font-weight:700; }
-  .brand::before{ content:"~/ "; color:var(--text-faint); }
-  nav ul{ list-style:none; display:flex; gap:22px; color:var(--text-dim); }
-  nav ul li a{ text-decoration:none; }
-  nav ul li a:hover{ color:var(--green); }
-  @media (max-width:640px){ nav ul{ display:none; } }
+  .nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 24px; max-width:880px; margin:0 auto; font-size:0.82rem;
+  }
+  .brand{
+    color:var(--green); font-weight:700; letter-spacing:0.02em;
+    text-shadow:0 0 8px rgba(57,255,106,0.3);
+    display:flex; align-items:center;
+  }
+  .brand::before{ content:"~/ "; color:var(--text-faint); text-shadow:none; }
+  .brand::after{
+    content:""; display:inline-block; width:6px; height:1em; background:var(--green);
+    margin-left:5px; animation:blink 1.1s step-end infinite;
+  }
+
+  nav ul{ list-style:none; display:flex; gap:6px; }
+  nav ul li a{
+    display:inline-block;
+    color:#00e5ff; text-decoration:none;
+    font-family:'Orbitron', 'IBM Plex Mono', monospace; font-size:0.72rem; font-weight:600; letter-spacing:0.06em;
+    padding:8px 16px; border-radius:20px; border:1px solid rgba(0,229,255,0.25);
+    background:rgba(0,229,255,0.05);
+    transition:color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+  nav ul li a:hover{
+    color:var(--green);
+    border-color:var(--green-dim);
+    background:rgba(57,255,106,0.08);
+    transform:translateY(-1px);
+  }
+
+  .nav-toggle{
+    display:none; position:relative; width:34px; height:34px;
+    background:none; border:1px solid var(--line); border-radius:5px;
+    cursor:pointer; padding:0;
+  }
+  .nav-toggle span{
+    position:absolute; left:8px; right:8px; height:2px; background:var(--green);
+    transition:transform 0.25s ease, opacity 0.25s ease;
+  }
+  .nav-toggle span:nth-child(1){ top:11px; }
+  .nav-toggle span:nth-child(2){ top:16px; }
+  .nav-toggle span:nth-child(3){ top:21px; }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
+
+  @media (max-width:640px){
+    nav ul{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0; background:rgba(5,8,5,0.98);
+      border-bottom:1px solid var(--line); padding:10px 16px;
+    }
+    nav ul.open{ display:flex; }
+    nav ul li a{
+      display:block; padding:12px 4px; border-radius:0;
+      border:none; border-top:1px solid var(--line);
+    }
+    nav ul li:first-child a{ border-top:none; }
+    nav ul li a:hover{ background:none; }
+    .nav-toggle{ display:inline-block; }
+  }
 
   .hero{ padding:150px 0 70px; border-bottom:1px solid var(--line); position:relative; }
   .boot{ color:var(--text-dim); font-size:0.85rem; margin-bottom:6px; }
@@ -121,7 +177,13 @@
   .contact-box{ text-align:center; }
   .contact-box h2{ color:var(--green); font-size:clamp(1.4rem,4vw,1.9rem); margin-bottom:12px; }
   .contact-box p{ color:var(--text-dim); max-width:48ch; margin:0 auto 24px; font-size:0.9rem; }
-  .contact-links{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+  .contact-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; align-items:flex-start; }
+  .contact-item{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .mini-qr{
+    width:150px; height:150px; border-radius:6px; border:1px solid var(--line);
+    background:var(--panel); padding:6px;
+  }
   .social-badges{
     display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
     margin-bottom:20px;
@@ -207,6 +269,28 @@
   }
   .avatar-ring svg{ width:100%; height:100%; border-radius:50%; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Md Siam Hasan",
+  "alternateName": "Siam Hasan",
+  "url": "https://hasansiam750-collab.github.io/",
+  "email": "hasansiam750@gmail.com",
+  "sameAs": [
+    "https://www.tiktok.com/@siamhasan11235813",
+    "https://www.facebook.com/s.ia.m.203739"
+  ],
+  "affiliation": {
+    "@type": "EducationalOrganization",
+    "name": "Mouchak Scout School and College"
+  },
+  "homeLocation": {
+    "@type": "Place",
+    "name": "Gazipur, Dhaka, Bangladesh"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -232,11 +316,14 @@
 <header>
   <div class="nav">
     <div class="brand">siam_hasan</div>
-    <ul>
+    <ul id="navMenu">
       <li><a href="#about">about</a></li>
       <li><a href="#education">education</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -267,6 +354,8 @@
         <p>Planning to join <strong>Border Guard Cantonment Public College, Sylhet</strong> once the SSC results are out. Also active on TikTok, sharing bits of day-to-day life.</p>
         <p>Dream: to study in the <strong>Department of Law, University of Dhaka</strong>.</p>
         <p>Another dream: to one day own a <strong>Honda Insight (2019 model)</strong>.</p>
+        <div style="display:inline-block; text-align:left; margin-bottom:8px; padding:5px 14px; border:2px solid #ff2b6d; border-radius:20px; font-family:'Orbitron','IBM Plex Mono',monospace; font-size:0.85rem; font-weight:700; color:#ff2b6d; box-shadow:0 0 10px rgba(255,43,109,0.4);">Marriage Details</div><br/>
+        <p style="font-family:'Orbitron','IBM Plex Mono',monospace; font-weight:700; font-size:1.05rem; background:linear-gradient(90deg,#ff2b6d,#ff9f1c,#ffe74c,#39ff6a,#00e5ff,#c86bff); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:0.03em;">I want a partner I can share life with, built on mutual respect and trust.</p>
         <p style="color:#ff2b2b;">My brother is an <strong style="color:#ff2b2b;">Assistant Professor</strong> in the Department of Computer Science and Engineering at <strong style="color:#ff2b2b;">Shahjalal University of Science and Technology (SUST)</strong>.</p>
       </div>
       <div class="panel">
@@ -324,15 +413,21 @@
       <p>Reach out by email or find me on TikTok / Facebook.</p>
       <div class="social-badges">
         <span class="badge badge-whatsapp"><i class="fa-brands fa-whatsapp icon"></i>S IAM</span>
-        <span class="badge badge-instagram"><i class="fa-brands fa-instagram icon"></i>SIAM</span>
-        <span class="badge badge-spotify"><i class="fa-brands fa-spotify icon"></i>SiAm</span>
-        <span class="badge badge-linkedin"><i class="fa-brands fa-linkedin icon"></i>SiAm HaSaN</span>
+        <a class="badge badge-instagram" href="https://www.instagram.com/%F0%9D%90%92%F0%9D%90%88%F0%9D%90%80%F0%9D%90%8C" target="_blank" rel="noopener"><i class="fa-brands fa-instagram icon"></i>SIAM</a>
+        <a class="badge badge-spotify" href="http://open.spotify.com/user/SiAm" target="_blank" rel="noopener"><i class="fa-brands fa-spotify icon"></i>SiAm</a>
+        <a class="badge badge-linkedin" href="https://linkedin.com/in/SiAm%20HaSaN" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin icon"></i>SiAm HaSaN</a>
         <a class="badge badge-tiktok" href="https://www.tiktok.com/@siamhasan11235813" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok icon"></i>SiAm11235813</a>
       </div>
       <div class="contact-links">
         <a class="btn" href="mailto:hasansiam750@gmail.com">email</a>
-        <a class="btn" href="https://www.tiktok.com/@siamhasan11235813" target="_blank" rel="noopener">tiktok</a>
-        <a class="btn" href="https://www.facebook.com/s.ia.m.203739" target="_blank" rel="noopener">facebook: S IA M (pnb)</a>
+        <div class="contact-item">
+          <a class="btn" href="https://www.tiktok.com/@siamhasan11235813" target="_blank" rel="noopener">tiktok</a>
+          <img class="mini-qr" src="data:image/png;base64,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" alt="TikTok profile QR code" />
+        </div>
+        <div class="contact-item">
+          <a class="btn" href="https://www.facebook.com/s.ia.m.203739" target="_blank" rel="noopener">facebook: S IA M (pnb)</a>
+          <img class="mini-qr" src="data:image/png;base64,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" alt="Facebook profile QR code" />
+        </div>
       </div>
     </div>
   </section>
@@ -341,6 +436,8 @@
 <footer>
   [<span class="ok">OK</span>] session stable · class XI · Sylhet
 </footer>
+
+<button id="soundToggle" style="position:fixed; bottom:20px; right:20px; z-index:60; width:46px; height:46px; border-radius:50%; background:#17222f; border:1px solid #263444; color:#39ff6a; font-size:1.1rem; box-shadow:0 4px 14px rgba(0,0,0,0.4);">🔇</button>
 
 <script>
   const reveals = document.querySelectorAll('.reveal');
@@ -361,6 +458,75 @@
       lockscreen.classList.add('unlocked');
       document.body.style.overflow = '';
     }, 450);
+    startAmbientDrone();
+  }
+
+  // Ambient "danger" drone — generated entirely with Web Audio, no copyrighted audio
+  let droneStarted = false;
+  let droneMasterGain = null;
+  let droneMuted = false;
+
+  function startAmbientDrone(){
+    if(droneStarted) return;
+    droneStarted = true;
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+      const buildGraph = ()=>{
+        const masterGain = ctx.createGain();
+        masterGain.gain.value = 0.18;
+        masterGain.connect(ctx.destination);
+        droneMasterGain = masterGain;
+
+        const osc1 = ctx.createOscillator();
+        osc1.type = 'sawtooth';
+        osc1.frequency.value = 110;
+        const osc2 = ctx.createOscillator();
+        osc2.type = 'sawtooth';
+        osc2.frequency.value = 116;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 500;
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(masterGain);
+
+        osc1.start();
+        osc2.start();
+
+        const lfo = ctx.createOscillator();
+        lfo.frequency.value = 0.12;
+        const lfoGain = ctx.createGain();
+        lfoGain.gain.value = 0.09;
+        lfo.connect(lfoGain);
+        lfoGain.connect(masterGain.gain);
+        lfo.start();
+
+        const btn = document.getElementById('soundToggle');
+        if(btn) btn.textContent = '🔊';
+      };
+
+      if(ctx.state === 'suspended'){
+        ctx.resume().then(buildGraph).catch(err=> console.error('audio resume failed', err));
+      } else {
+        buildGraph();
+      }
+    }catch(e){ console.error('ambient audio error', e); }
+  }
+
+  const soundBtn = document.getElementById('soundToggle');
+  if(soundBtn){
+    soundBtn.addEventListener('click', ()=>{
+      if(!droneStarted){
+        startAmbientDrone();
+        return;
+      }
+      droneMuted = !droneMuted;
+      if(droneMasterGain) droneMasterGain.gain.value = droneMuted ? 0 : 0.18;
+      soundBtn.textContent = droneMuted ? '🔇' : '🔊';
+    });
   }
 
   const lockRow = document.querySelector('.lock-input-row');
@@ -450,6 +616,20 @@
     sctx.restore();
   }
   setInterval(drawSkullMatrix, 60);
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', ()=>{
+    navMenu.classList.toggle('open');
+    navToggle.classList.toggle('open');
+  });
+  navMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      navMenu.classList.remove('open');
+      navToggle.classList.remove('open');
+    });
+  });
 
   // Typewriter effect: types out the name, pauses, erases, retypes — loop
   // Name is shown as static, stable text (no animation)
